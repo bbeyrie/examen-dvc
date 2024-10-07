@@ -58,6 +58,10 @@ def process_data(input_data_path, input_models_path):
         output_filepath = os.path.join(input_data_path, f'{filename}.csv')
         file.to_csv(output_filepath, index=False)
 
+    # Create folder if necessary 
+    if not os.path.exists("metrics"):
+        os.makedirs("metrics")
+
     #--Saving the metrics
     with open("metrics/scores.json", 'w') as json_file:
         json.dump(metrics, json_file)

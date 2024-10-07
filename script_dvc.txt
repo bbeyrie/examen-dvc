@@ -1,24 +1,22 @@
 dvc stage add -n split \
               -d src/data/split_dataset.py -d data/raw_data \
-              -o data/processed_data \
+              --outs-persist data/processed_data \
               python src/data/split_dataset.py
 
-dvc stage add -n split \
-              -d src/data/split_dataset.py -d data/raw_data \
-              -o data/processed_data \
-              python src/data/split_dataset.py
+dvc stage add -n normalize \
+              -d src/data/scale_dataset.py -d data/processed_data \
+              python src/data/scale_dataset.py
 
-dvc stage add -n split \
-              -d src/data/split_dataset.py -d data/raw_data \
-              -o data/processed_data \
-              python src/data/split_dataset.py
+dvc stage add -n gridsearch \
+              -d src/models/gridsearch_model.py -d data/processed_data \
+              --outs-persist models \
+              python src/models/gridsearch_model.py
 
-dvc stage add -n split \
-              -d src/data/split_dataset.py -d data/raw_data \
-              -o data/processed_data \
-              python src/data/split_dataset.py
+dvc stage add -n training \
+              -d src/models/train_model.py -d data/processed_data -d models \
+              python src/models/train_model.py
 
-dvc stage add -n split \
-              -d src/data/split_dataset.py -d data/raw_data \
-              -o data/processed_data \
-              python src/data/split_dataset.py
+dvc stage add -n predict \
+              -d src/models/predict_model.py -d data/processed_data -d models \
+              --outs-persist metrics \
+              python src/models/predict_model.py

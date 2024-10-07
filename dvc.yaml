@@ -1,0 +1,37 @@
+stages:
+  split:
+    cmd: python src/data/split_dataset.py
+    deps:
+    - data/raw_data
+    - src/data/split_dataset.py
+    outs:
+    - data/processed_data:
+        persist: true
+  normalize:
+    cmd: python src/data/scale_dataset.py
+    deps:
+    - data/processed_data
+    - src/data/scale_dataset.py
+  gridsearch:
+    cmd: python src/models/gridsearch_model.py
+    deps:
+    - data/processed_data
+    - src/models/gridsearch_model.py
+    outs:
+    - models:
+        persist: true
+  training:
+    cmd: python src/models/train_model.py
+    deps:
+    - data/processed_data
+    - models
+    - src/models/train_model.py
+  predict:
+    cmd: python src/models/predict_model.py
+    deps:
+    - data/processed_data
+    - models
+    - src/models/predict_model.py
+    outs:
+    - metrics:
+        persist: true
