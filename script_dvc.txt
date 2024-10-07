@@ -1,0 +1,24 @@
+dvc stage add -n split \
+              -d src/data/split_dataset.py -d data/raw_data \
+              -o data/processed_data \
+              python src/data/split_dataset.py
+
+dvc stage add -n split \
+              -d src/data/split_dataset.py -d data/raw_data \
+              -o data/processed_data \
+              python src/data/split_dataset.py
+
+dvc stage add -n split \
+              -d src/data/split_dataset.py -d data/raw_data \
+              -o data/processed_data \
+              python src/data/split_dataset.py
+
+dvc stage add -n split \
+              -d src/data/split_dataset.py -d data/raw_data \
+              -o data/processed_data \
+              python src/data/split_dataset.py
+
+dvc stage add -n split \
+              -d src/data/split_dataset.py -d data/raw_data \
+              -o data/processed_data \
+              python src/data/split_dataset.py

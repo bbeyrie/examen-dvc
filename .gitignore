@@ -1,3 +1,5 @@
 /env
 /clean_data.csv
 # /data/
+/models
+/metrics
